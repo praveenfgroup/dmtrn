@@ -1,0 +1,21 @@
+<apex:page standardController="Account" extensions="AccountController" sidebar="true" showHeader="true" tabstyle="Account">
+   <div>
+        <apex:sectionHeader title="Account" subtitle="{!account.Name}" />
+    </div>
+    <div>
+        <apex:outputLink style="float: right; display: block;" target="_blank"
+            value="/{!account.Id}/p?retURL=/apex/account?id={!account.Id}}"
+            styleClass="links">
+        Printable view
+      </apex:outputLink>
+    </div>
+    <br style="clear: both;" />
+    <chatter:feedWithFollowers entityId="{!account.Id}" />
+    
+    <div id="PageRecordTypeOne"> 
+       <apex:include pageName="AccountView" rendered="{!NOT(agentPortalMode)}"/>  
+    </div>
+     <div id="PagePortal">
+        <apex:include pageName="AccountViewPortal" rendered="{!agentPortalMode}"/>    
+    </div> 
+</apex:page>
